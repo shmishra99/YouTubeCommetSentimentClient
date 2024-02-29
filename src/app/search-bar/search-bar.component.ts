@@ -28,7 +28,12 @@ export class SearchBarComponent {
                 console.log("Fetched value",typeof v)
                 this.sharedDataService.updateData(v)
               },
-              error: (e) => console.error(e),
+              error: (e) => {
+                alert('Error while calling the Backend.' + e)
+                console.error(e)
+                throw e
+              
+              },
               complete: () => console.info('complete') 
              }
     );
