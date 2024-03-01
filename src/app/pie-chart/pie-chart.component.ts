@@ -28,16 +28,22 @@ export class PieChartComponent {
     undetermined_count: { color: 'rgba(0, 0, 255, 0.6)', value: 0 },
   };
   constructor(private sharedDataService: SharedDataService) {}
+  
+
 
   ngOnInit() {
+
+  }
+
+  ngAfterContentInit(){
     this.sharedDataService.currentData.subscribe((data) => {
       console.log(typeof this.chart);
 
       if (data) {
         this.chart.destroy();
       }
-      //To test on bigger value we can uncomment reintialization.
-      //  data = this.getdumyData()
+      // To test on bigger value we can uncomment reintialization.
+       data = this.getdumyData()
       const sortedObject = Object.entries(data).sort((a, b) => b[1] - a[1]);
       this.createBarChart(sortedObject);
     });
@@ -51,6 +57,10 @@ export class PieChartComponent {
       this.background[index] = this.sen_analysis_object[key].color;
       index++;
     }
+    // var ctx = document.getElementById()
+    // if(document.getElementById)
+    //   ctx = document?.getElementById("canvas").getContext("2d")
+
     this.chart = new Chart('canvas', {
       type: 'bar',
       data: {
@@ -79,10 +89,10 @@ export class PieChartComponent {
 
   getdumyData() {
     return {
-      negative_count: 20,
-      neutral_count: 31,
-      positive_count: 50,
-      undetermined_count: 70,
+      negative_count: 1200,
+      neutral_count: 301,
+      positive_count: 150,
+      undetermined_count: 170,
     };
   }
 }
