@@ -23,19 +23,19 @@ export class SearchBarComponent {
   onSubmit(){
     console.log('Processing....')
     this.commentAnalysisService.getData(this.searchText).subscribe(
-             {
-              next: (v) => {
-                console.log("Fetched value",typeof v)
-                this.sharedDataService.updateData(v)
-              },
-              error: (e) => {
-                alert('Error while calling the Backend.' + e)
-                console.error(e)
-                throw e
-              
-              },
-              complete: () => console.info('complete') 
-             }
+      {
+        next: (v) => {
+          console.log("Fetched value",typeof v)
+          this.sharedDataService.updateData(v)
+        },
+        error: (e) => {
+          alert('Error while calling the Backend.' + e)
+          console.error(e)
+          throw e
+        
+        },
+        complete: () => console.info('complete') 
+      }
     );
   }
   }

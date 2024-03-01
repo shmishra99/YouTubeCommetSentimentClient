@@ -42,8 +42,11 @@ export class PieChartComponent {
       if (data) {
         this.chart.destroy();
       }
-      // To test on bigger value we can uncomment reintialization.
-       data = this.getdumyData()
+
+      for (const [key, value] of Object.entries(data)) {
+        this.sen_analysis_object[key]['value'] = value;
+      }
+
       const sortedObject = Object.entries(data).sort((a, b) => b[1] - a[1]);
       this.createBarChart(sortedObject);
     });
@@ -89,9 +92,9 @@ export class PieChartComponent {
 
   getdumyData() {
     return {
-      negative_count: 1200,
+      negative_count: 400,
       neutral_count: 301,
-      positive_count: 150,
+      positive_count: 1200,
       undetermined_count: 170,
     };
   }
