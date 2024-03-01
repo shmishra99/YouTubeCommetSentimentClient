@@ -22,10 +22,10 @@ export class PieChartComponent {
     'undetermined_count',
   ];
   sen_analysis_object: any = {
-    negative_count: { color: 'rgba(255, 0, 0, 1)', value: 0 },
-    neutral_count: { color: 'rgba(255, 255, 0, 0.5)', value: 0 },
-    positive_count: { color: 'rgba(144, 238, 144, 1)', value: 0 },
-    undetermined_count: { color: 'rgba(0, 0, 255, 0.6)', value: 0 },
+    negative_count: { color: 'rgba(234, 67, 53, 1)', value: 0 },
+    neutral_count: { color: 'rgba(251, 188, 5, 1)', value: 0 },
+    positive_count: { color: 'rgba(52, 168, 83, 1)', value: 0 },
+    undetermined_count: { color: 'rgba(66, 133, 244, 1)', value: 0 },
   };
   constructor(private sharedDataService: SharedDataService) {}
   
@@ -74,12 +74,6 @@ export class PieChartComponent {
             data: this.data,
             borderWidth: 1,
             backgroundColor: this.background,
-            borderColor: [
-              'rgb(255, 99, 132)',
-              'rgb(255, 159, 64)',
-              'rgb(255, 205, 86)',
-              'rgb(75, 192, 192)',
-            ],
           },
         ],
       },
