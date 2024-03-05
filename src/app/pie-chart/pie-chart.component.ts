@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import Chart from 'chart.js/auto';
+import { SentimentSummary } from '../interfaces/ISentimentSummary'; 
 import {SharedDataService} from '../shared-data.service'
+
+
+function isNumber(obj: unknown): obj is number {
+  return typeof obj === 'number';
+}
 
 
 @Component({
@@ -13,7 +19,7 @@ import {SharedDataService} from '../shared-data.service'
 export class PieChartComponent {
   title = 'ng-chart';
   chart: any = [];
-  data: any = [0, 0, 0, 0];
+  data: number[] = [0, 0, 0, 0];
   background: string[] = [];
   labels: string[] = [
     'negative_count',
@@ -21,7 +27,7 @@ export class PieChartComponent {
     'positive_count',
     'undetermined_count',
   ];
-  sen_analysis_object: any = {
+  sen_summary_object: SentimentSummary = {
     negative_count: { color: 'rgba(234, 67, 53, 1)', value: 0 },
     neutral_count: { color: 'rgba(251, 188, 5, 1)', value: 0 },
     positive_count: { color: 'rgba(52, 168, 83, 1)', value: 0 },
@@ -44,20 +50,27 @@ export class PieChartComponent {
       }
 
       for (const [key, value] of Object.entries(data)) {
-        this.sen_analysis_object[key]['value'] = value;
+        if (key == 'sentiment_counts') {
+          for (const [sentiment_key, count] of Object.entries(value)) {
+            if (isNumber(count)) {
+              this.sen_summary_object[sentiment_key].value = count;
+            }
+          }
+        }
       }
 
-      const sortedObject = Object.entries(data).sort((a, b) => b[1] - a[1]);
+      let sortedObject = Object.entries(this.sen_summary_object).sort((a, b) => b[1].value - a[1].value);
       this.createBarChart(sortedObject);
     });
   }
 
   createBarChart(sortedObject: any) {
+    console.log(sortedObject);
     let index = 0;
-    for (let [key, value] of sortedObject) {
+    for (let [key, {color, value}] of sortedObject) {
       this.data[index] = value;
       this.labels[index] = key;
-      this.background[index] = this.sen_analysis_object[key].color;
+      this.background[index] = color;
       index++;
     }
     // var ctx = document.getElementById()
