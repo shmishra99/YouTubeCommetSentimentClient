@@ -65,7 +65,6 @@ export class PieChartComponent {
   }
 
   createBarChart(sortedObject: any) {
-    console.log(sortedObject);
     let index = 0;
     for (let [key, {color, value}] of sortedObject) {
       this.data[index] = value;
