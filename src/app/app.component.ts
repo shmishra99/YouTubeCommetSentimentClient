@@ -20,6 +20,8 @@ export class AppComponent {
   title = 'commentSentiment'
   topCommentsData: string[] = []
   botCommentsData: string[] = []
+  topCommentsTitle = 'Top Comments'
+  botCommentsTitle = 'Bottom Comments'
 
   constructor(private sharedDataService: SharedDataService) { }
 

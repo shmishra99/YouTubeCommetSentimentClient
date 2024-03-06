@@ -11,8 +11,10 @@ import { CommonModule } from '@angular/common';
 
 export class ListComponent {
   @Input() listData: string[];
+  @Input() title: string;
 
   constructor() {
     this.listData = []; // Initialize with an empty array
+    this.title = '';
   }
 }
