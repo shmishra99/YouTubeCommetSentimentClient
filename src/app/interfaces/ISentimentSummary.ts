@@ -1,7 +1,7 @@
 export interface SentimentSummary {
-    [key: string]: { color: string; value: number };
-    negative_count: { color: string; value: number };
-    neutral_count: { color: string; value: number };
-    positive_count: { color: string; value: number };
-    undetermined_count: { color: string; value: number };
+    [key: string]: { color: string; count: number; percent: number };
+    negative: { color: string; count: number; percent: number };
+    neutral: { color: string; count: number; percent: number };
+    positive: { color: string; count: number; percent: number };
+    undetermined: { color: string; count: number; percent: number };
 }

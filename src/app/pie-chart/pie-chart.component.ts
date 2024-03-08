@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { SentimentSummary } from '../interfaces/ISentimentSummary'; 
-import {SharedDataService} from '../shared-data.service'
+import { SentimentSummary } from '../interfaces/ISentimentSummary';
+import {SharedDataService} from '../shared-data.service';
+import {BackendApiResponse} from '../interfaces/IBackendApiResponse';
 
 
 function isNumber(obj: unknown): obj is number {
@@ -18,57 +19,73 @@ function isNumber(obj: unknown): obj is number {
 })
 export class PieChartComponent {
   title = 'ng-chart';
-  chart: any = [];
+  chart: Chart;
   data: number[] = [0, 0, 0, 0];
   background: string[] = [];
   labels: string[] = [
-    'negative_count',
-    'neutral_count',
-    'positive_count',
-    'undetermined_count',
+    'positive %',
+    'neutral %',
+    'negative %',
+    'undetermined %',
   ];
   sen_summary_object: SentimentSummary = {
-    negative_count: { color: 'rgba(234, 67, 53, 1)', value: 0 },
-    neutral_count: { color: 'rgba(251, 188, 5, 1)', value: 0 },
-    positive_count: { color: 'rgba(52, 168, 83, 1)', value: 0 },
-    undetermined_count: { color: 'rgba(66, 133, 244, 1)', value: 0 },
+    negative: { color: 'rgba(234, 67, 53, 1)', count: 0, percent: 0 },
+    neutral: { color: 'rgba(251, 188, 5, 1)', count: 0, percent: 0 },
+    positive: { color: 'rgba(52, 168, 83, 1)', count: 0, percent: 0 },
+    undetermined: { color: 'rgba(66, 133, 244, 1)', count: 0, percent: 0 },
   };
-  constructor(private sharedDataService: SharedDataService) {}
-  
+  total: number = 0;
 
-
-  ngOnInit() {
-
+  constructor(private sharedDataService: SharedDataService) {
+    this.chart = new Chart('canvas', {
+      type: 'bar',
+      data: {
+        labels: this.labels,
+        datasets: [
+          {
+            label: 'sentiment',
+            data: this.data,
+            borderWidth: 1,
+            backgroundColor: this.background,
+          },
+        ],
+      },
+      options: {
+        maintainAspectRatio: false,
+        indexAxis: 'y',
+      },
+    });
   }
 
-  ngAfterContentInit(){
+  ngOnInit() {
     this.sharedDataService.currentData.subscribe((data) => {
-      console.log(typeof this.chart);
 
       if (data) {
         this.chart.destroy();
       }
 
-      for (const [key, value] of Object.entries(data)) {
-        if (key == 'sentiment_counts') {
-          for (const [sentiment_key, count] of Object.entries(value)) {
-            if (isNumber(count)) {
-              this.sen_summary_object[sentiment_key].value = count;
-            }
-          }
-        }
+      const { sentiment_summary } = data as BackendApiResponse
+
+      for (const [key, value] of Object.entries(sentiment_summary)) {
+        this.sen_summary_object[key].count = value.count;
+        this.sen_summary_object[key].percent = value.percent;
       }
 
-      let sortedObject = Object.entries(this.sen_summary_object).sort((a, b) => b[1].value - a[1].value);
+      let sortedObject = Object.entries(this.sen_summary_object).sort((a, b) => b[1].percent - a[1].percent);
+      console.log(sortedObject);
       this.createBarChart(sortedObject);
     });
+  }
+  
+  ngAfterContentInit() {
+    
   }
 
   createBarChart(sortedObject: any) {
     let index = 0;
-    for (let [key, {color, value}] of sortedObject) {
-      this.data[index] = value;
-      this.labels[index] = key;
+    for (let [key, {color, _, percent}] of sortedObject) {
+      this.data[index] = percent;
+      this.labels[index] = key + ' %';
       this.background[index] = color;
       index++;
     }

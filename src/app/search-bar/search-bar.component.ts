@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import {CommonModule} from '@angular/common'
+import { HttpClient } from '@angular/common/http';
 import {CommentAnalysisService} from '../comment-analysis.service'
 import {SharedDataService} from '../shared-data.service'
 
