@@ -7,11 +7,9 @@ ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
-WORKDIR /app
-
 RUN npm install
 RUN npm install -g @angular/cli
 
-EXPOSE 4200
+EXPOSE 8080
 
-CMD ["ng", "serve"]
+CMD ["ng", "serve", "--port", "8080"]
