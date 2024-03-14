@@ -7,4 +7,6 @@ export interface BackendApiResponse {
     }
     top_comments: [string, number][]
     bot_comments: [string, number][]
+    title: string
+    large_thumbnail_url: string
 }

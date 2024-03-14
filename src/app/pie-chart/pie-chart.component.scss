@@ -1,15 +1,18 @@
 
 #chart-container {
     border: 1px solid #000;
-    overflow: hidden;
-    height: 59%;
-    width: 68%;
+    overflow: visible;
+    height: 200px;
+    width: 850px;
     left: 14%;
     top: 47%;
     margin: auto;
     min-height: 65vh;
 }
 
-#flex-space {
-    height: 20px;
+div {
+    width: 90%;
+    border: 15px solid rgb(211, 44, 44);
+    padding: 50px;
+    margin: 20px;
 }
