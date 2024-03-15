@@ -1,15 +1,15 @@
-FROM debian
+FROM node:slim
 
-RUN apt-get update
-RUN apt-get install -y npm
+WORKDIR /usr/src/app
+COPY package*.json ./
 
-ENV APP_HOME /app
-WORKDIR $APP_HOME
+RUN npm install -g @angular/cli
+RUN npm install
+
 COPY . ./
 
-RUN npm install
-RUN npm install -g @angular/cli
+RUN npm run build
 
 EXPOSE 8080
 
-CMD ["ng", "serve", "--port", "8080"]
+CMD exec ng serve --host 0.0.0.0 --port $PORT
