@@ -10,8 +10,6 @@ export class SharedDataService {
   private sharedData = new BehaviorSubject<Object>('');
   currentData = this.sharedData.asObservable();
   updateData(searchText:object): any {
-    console.log('line')
-    console.log('line 14',searchText)
     return this.sharedData.next(searchText);
   }
 

@@ -32,6 +32,8 @@ export class AppComponent {
 
   ngOnInit() {
     this.sharedDataService.currentData.subscribe(data => {
+      if(!data)
+        return
       const { top_comments, bot_comments, title, large_thumbnail_url } = data as BackendApiResponse
       this.topCommentsData = top_comments.map(item => item[0])
       this.botCommentsData = bot_comments.map(item => item[0])
