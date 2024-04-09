@@ -42,12 +42,11 @@ export class SearchBarComponent implements OnInit{
   
   async onSubmit(){
     console.log('Processing....')
-    console.log(this.tokenClient)
     await this.handleAuthClick()
   }
 
   async youTubeSentimentBackend(access_token:string){
-    console.log('youTubeSentimentBackend',access_token)
+    console.log('Making call to youTubeSentimentBackend')
     this.commentAnalysisService.getData(this.searchText,access_token).subscribe(
       {
         next: (v) => {
@@ -77,11 +76,9 @@ async handleAuthClick() {
   const seconds = Math.round(d.getTime() / 1000);
   this.tokenClient.callback = async (resp:any) => {
     if (resp.error !== undefined) {
-      console.log('line 101')
       alert('Error while authenticating the user.')
       throw (resp);
     }
-    console.log('response',resp)
     const accessToken = resp.access_token;
     localStorage.setItem('access_token', accessToken);
     localStorage.setItem('refresh_at', String(seconds));
@@ -93,13 +90,11 @@ async handleAuthClick() {
   const stored_token = localStorage.getItem('access_token');
   const is_valid = refresh_at && (seconds - refresh_at) < 3550;
   if (is_valid && stored_token) {
-    console.log('line 95...')
     this.youTubeSentimentBackend(stored_token)
   }
   else {
     console.log('Calling token client.')
     let valid =  await this.tokenClient.requestAccessToken();
-    console.log('valid',valid)
   }
 }
   }

@@ -59,20 +59,25 @@ export class PieChartComponent {
 
   ngOnInit() {
     this.sharedDataService.currentData.subscribe((data) => {
-
-      if (!data) {
+      if (data) {
         this.chart.destroy();
-        return
       }
 
+      try{
       const { sentiment_summary } = data as BackendApiResponse
       for (const [key, value] of Object.entries(sentiment_summary)) {
         this.sen_summary_object[key].count = value.count;
         this.sen_summary_object[key].percent = value.percent;
       }
       let sortedObject = Object.entries(this.sen_summary_object).sort((a, b) => b[1].percent - a[1].percent);
-      console.log(sortedObject);
+      console.log("sortedObject",sortedObject);
       this.createBarChart(sortedObject);
+    }
+    catch(e){
+      console.log('Data row is null in initial load.')
+    }
+
+    
     });
   }
   
