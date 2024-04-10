@@ -42,6 +42,10 @@ export class SearchBarComponent implements OnInit{
   
   async onSubmit(){
     console.log('Processing....')
+    if(this.searchText == ''){
+      alert('Entered URL is not valid.')
+       return
+    }
     await this.handleAuthClick()
   }
 
@@ -80,14 +84,14 @@ async handleAuthClick() {
       throw (resp);
     }
     const accessToken = resp.access_token;
-    localStorage.setItem('access_token', accessToken);
-    localStorage.setItem('refresh_at', String(seconds));
+    sessionStorage.setItem('access_token', accessToken);
+    sessionStorage.setItem('refresh_at', String(seconds));
     this.youTubeSentimentBackend(accessToken)
 
   };
-  const refresh_at:number = localStorage.getItem('refresh_at') ? Number(localStorage.getItem('refresh_at')) : Number.MAX_SAFE_INTEGER;
+  const refresh_at:number = sessionStorage.getItem('refresh_at') ? Number(sessionStorage.getItem('refresh_at')) : Number.MAX_SAFE_INTEGER;
   //Validate the token as well.
-  const stored_token = localStorage.getItem('access_token');
+  const stored_token = sessionStorage.getItem('access_token');
   const is_valid = refresh_at && (seconds - refresh_at) < 3550;
   if (is_valid && stored_token) {
     this.youTubeSentimentBackend(stored_token)
