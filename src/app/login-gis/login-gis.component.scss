@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+.login-gis{
+    display: grid;
+    position: fixed;
+    /* align-items: center; */
+    margin: 25px;
+    left: 40%;
+
+}
+
+.login-gis button{
+    padding: 8px 58px 9px 16px;
+    margin: 0px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 30px;
+
+}
+
+
+.login-gis button:hover{
+  background-color: rgb(206, 206, 212);
+  border: 1px solid rgb(115, 115, 236);
+
+}
+
+.login-gis p{
+    font-size: 21px;
+    position: relative;
+    left: 22%;
+}
+
+.icon-google{
+    position:absolute;
+    width: 25px;
+}

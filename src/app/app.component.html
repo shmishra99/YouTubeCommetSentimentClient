@@ -1,10 +1,9 @@
+<!-- <app-sentiment-landing> </app-sentiment-landing> -->
 
-<app-search-bar> </app-search-bar>
-<div class="main_box">
-    <app-overview [video_title]="video_title" [thumbnail_url]="thumbnail_url"> </app-overview>
-    <app-pie-chart > </app-pie-chart>
-    <div>
-        <app-list [listData]="topCommentsData" [title]="topCommentsTitle" [borderColor]="topBorderColor"></app-list>
-        <app-list [listData]="botCommentsData" [title]="botCommentsTitle" [borderColor]="botBorderColor"></app-list>
-    </div>
-</div>
+
+<div class="container text-center heading-tube">
+    <h1><i class="fa fa-youtube-play" style="font-size:48px;color:red"></i>
+        {{title}}</h1>
+ </div>
+
+<router-outlet></router-outlet>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { SentimentSummary } from '../interfaces/ISentimentSummary';
 import {SharedDataService} from '../shared-data.service';
@@ -36,7 +36,8 @@ export class PieChartComponent {
   };
   total: number = 0;
 
-  constructor(private sharedDataService: SharedDataService) {
+  constructor(@Inject(SharedDataService)private sharedDataService: SharedDataService) {
+    console.log('pie chart constructor')
     this.chart = new Chart('canvas', {
       type: 'bar',
       data: {
@@ -55,9 +56,15 @@ export class PieChartComponent {
         indexAxis: 'y',
       },
     });
+
+  }
+
+  chartInitialization(){
+
   }
 
   ngOnInit() {
+    console.log('ngonit in pie chart')
     this.sharedDataService.currentData.subscribe((data) => {
       if (data) {
         this.chart.destroy();
@@ -80,6 +87,7 @@ export class PieChartComponent {
     
     });
   }
+  
   
   ngAfterContentInit() {
     
