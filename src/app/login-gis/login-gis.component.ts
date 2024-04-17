@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { validateToken } from '../authentication-gis.guard';
+import { environment } from '../../environments/environment';
 declare var google:any;
 
 @Component({
@@ -13,9 +14,11 @@ declare var google:any;
 export class LoginGisComponent {
   tokenClient:any
   ngOnInit():void{
-    const CLIENT_ID =
-    '788168760496-hhftuahtts34vljarc3la277fjioh4g4.apps.googleusercontent.com';
-  const SCOPES = 'https://www.googleapis.com/auth/userinfo.profile';
+    console.log('Inside ngoninit')
+    const CLIENT_ID = environment.CLIENT_ID
+   const SCOPES = environment.SCOPES;
+
+
 
   try {
     this.tokenClient = google.accounts.oauth2.initTokenClient({
@@ -60,6 +63,6 @@ export class LoginGisComponent {
      else {
        await this.tokenClient.requestAccessToken();
      }
-
-  }
+  
+    }
 }

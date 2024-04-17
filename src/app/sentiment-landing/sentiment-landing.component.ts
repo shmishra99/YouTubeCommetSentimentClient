@@ -40,7 +40,4 @@ ngOnInit() {
     this.thumbnail_url = large_thumbnail_url
   })
 }
-
 }
-
-

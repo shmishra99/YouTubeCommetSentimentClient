@@ -6,6 +6,7 @@ import {CommonModule} from '@angular/common'
 import { HttpClient } from '@angular/common/http';
 import {CommentAnalysisService} from '../comment-analysis.service'
 import {SharedDataService} from '../shared-data.service'
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-search-bar',
@@ -23,9 +24,9 @@ export class SearchBarComponent implements OnInit{
     
   }
   ngOnInit():void{
-    const CLIENT_ID =
-    '788168760496-hhftuahtts34vljarc3la277fjioh4g4.apps.googleusercontent.com';
-  const SCOPES = 'https://www.googleapis.com/auth/userinfo.profile';
+  const CLIENT_ID = environment.CLIENT_ID
+  const SCOPES = environment.SCOPES
+
 
   try {
     this.tokenClient = google.accounts.oauth2.initTokenClient({
@@ -36,8 +37,6 @@ export class SearchBarComponent implements OnInit{
   } catch (e) {
     console.log('Client library is Loading in backend.');
   }
-
-
   }
   
   async onSubmit(){

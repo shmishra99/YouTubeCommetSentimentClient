@@ -1,10 +1,17 @@
-
 <app-search-bar> </app-search-bar>
+
 <div class="main_box">
-    <app-overview [video_title]="video_title" [thumbnail_url]="thumbnail_url"> </app-overview>
-    <app-pie-chart > </app-pie-chart>
-    <div>
+    <div class="app-chart">
+        <app-pie-chart> </app-pie-chart>
+    </div>
+    <div class="thumbnail">
+        <app-overview [video_title]="video_title" [thumbnail_url]="thumbnail_url">
+        </app-overview>
+    </div>
+    <div class="top-comment">
         <app-list [listData]="topCommentsData" [title]="topCommentsTitle" [borderColor]="topBorderColor"></app-list>
+    </div>
+    <div class="bottom-comment">
         <app-list [listData]="botCommentsData" [title]="botCommentsTitle" [borderColor]="botBorderColor"></app-list>
     </div>
 </div>

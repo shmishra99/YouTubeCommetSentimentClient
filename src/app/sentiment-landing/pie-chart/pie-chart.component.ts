@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject,PLATFORM_ID, afterRender } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { SentimentSummary } from '../interfaces/ISentimentSummary';
 import {SharedDataService} from '../shared-data.service';
@@ -19,7 +19,7 @@ function isNumber(obj: unknown): obj is number {
 })
 export class PieChartComponent {
   title = 'ng-chart';
-  chart: Chart;
+  chart: Chart
   data: number[] = [0, 0, 0, 0];
   background: string[] = [];
   labels: string[] = [
@@ -36,42 +36,30 @@ export class PieChartComponent {
   };
   total: number = 0;
 
-  constructor(@Inject(SharedDataService)private sharedDataService: SharedDataService) {
+  constructor(@Inject(SharedDataService)private sharedDataService: SharedDataService,
+        @Inject(PLATFORM_ID) private platformId: Object,private cdRef: ChangeDetectorRef) {
     console.log('pie chart constructor')
-    this.chart = new Chart('canvas', {
-      type: 'bar',
-      data: {
-        labels: this.labels,
-        datasets: [
-          {
-            label: 'sentiment',
-            data: this.data,
-            borderWidth: 1,
-            backgroundColor: this.background,
-          },
-        ],
-      },
-      options: {
-        maintainAspectRatio: false,
-        indexAxis: 'y',
-      },
-    });
-
   }
 
-  chartInitialization(){
-
-  }
 
   ngOnInit() {
-    console.log('ngonit in pie chart')
+ 
+  }
+
+  ngAfterViewInit(){
+    console.log('ngAfterViewInit in pie chart',this.platformId)
+    if(this.platformId == 'server')
+       return
     this.sharedDataService.currentData.subscribe((data) => {
-      if (data) {
+      console.log('data',data)
+      console.log(this.chart)
+      if (this.chart) {
         this.chart.destroy();
       }
-
       try{
       const { sentiment_summary } = data as BackendApiResponse
+      console.log('intial object',sentiment_summary)
+     
       for (const [key, value] of Object.entries(sentiment_summary)) {
         this.sen_summary_object[key].count = value.count;
         this.sen_summary_object[key].percent = value.percent;
@@ -79,31 +67,23 @@ export class PieChartComponent {
       let sortedObject = Object.entries(this.sen_summary_object).sort((a, b) => b[1].percent - a[1].percent);
       console.log("sortedObject",sortedObject);
       this.createBarChart(sortedObject);
+      this.cdRef.detectChanges();
     }
     catch(e){
-      console.log('Data row is null in initial load.')
+      console.log('Data row is null in initial load.,',e)
     }
-
-    
     });
-  }
-  
-  
-  ngAfterContentInit() {
-    
-  }
 
+  }
   createBarChart(sortedObject: any) {
     let index = 0;
     for (let [key, {color, _, percent}] of sortedObject) {
       this.data[index] = percent;
       this.labels[index] = key + ' %';
       this.background[index] = color;
+      console.log('color',color)
       index++;
     }
-    // var ctx = document.getElementById()
-    // if(document.getElementById)
-    //   ctx = document?.getElementById("canvas").getContext("2d")
 
     this.chart = new Chart('canvas', {
       type: 'bar',

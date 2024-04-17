@@ -9,11 +9,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './list.component.scss'
 })
 
+
+
 export class ListComponent {
   @Input() listData: string[];
   @Input() title: string;
   @Input() borderColor: string = ''
-
   constructor() {
     this.listData = []; // Initialize with an empty array
     this.title = '';

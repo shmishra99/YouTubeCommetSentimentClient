@@ -1,18 +1,18 @@
 
 #chart-container {
-    border: 1px solid #000;
-    overflow: visible;
-    height: 200px;
-    width: 850px;
-    left: 14%;
-    top: 47%;
-    margin: auto;
-    min-height: 65vh;
+    box-sizing: border-box;
+    width: 90%;
+    border: 2px solid black;
+    height: 90%;
+    padding: 10px;
+    margin: 5px 0px 0px 10px;
+    position: relative;
+    left: 38px;
 }
 
-div {
-    width: 90%;
-    border: 15px solid rgb(211, 44, 44);
-    padding: 50px;
-    margin: 20px;
-}
+// div {
+//     width: 50%;
+//     border: 15px solid rgb(211, 44, 44);
+//     // padding: 50px;
+//     // margin: 20px;
+// }
