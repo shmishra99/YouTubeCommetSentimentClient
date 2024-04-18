@@ -38,7 +38,7 @@ export class PieChartComponent {
 
   constructor(@Inject(SharedDataService)private sharedDataService: SharedDataService,
         @Inject(PLATFORM_ID) private platformId: Object,private cdRef: ChangeDetectorRef) {
-    console.log('pie chart constructor')
+    console.log('Pie Chart Constructor')
   }
 
 
@@ -47,25 +47,19 @@ export class PieChartComponent {
   }
 
   ngAfterViewInit(){
-    console.log('ngAfterViewInit in pie chart',this.platformId)
     if(this.platformId == 'server')
        return
     this.sharedDataService.currentData.subscribe((data) => {
-      console.log('data',data)
-      console.log(this.chart)
       if (this.chart) {
         this.chart.destroy();
       }
       try{
-      const { sentiment_summary } = data as BackendApiResponse
-      console.log('intial object',sentiment_summary)
-     
+      const { sentiment_summary } = data as BackendApiResponse     
       for (const [key, value] of Object.entries(sentiment_summary)) {
         this.sen_summary_object[key].count = value.count;
         this.sen_summary_object[key].percent = value.percent;
       }
       let sortedObject = Object.entries(this.sen_summary_object).sort((a, b) => b[1].percent - a[1].percent);
-      console.log("sortedObject",sortedObject);
       this.createBarChart(sortedObject);
       this.cdRef.detectChanges();
     }
@@ -81,7 +75,6 @@ export class PieChartComponent {
       this.data[index] = percent;
       this.labels[index] = key + ' %';
       this.background[index] = color;
-      console.log('color',color)
       index++;
     }
 

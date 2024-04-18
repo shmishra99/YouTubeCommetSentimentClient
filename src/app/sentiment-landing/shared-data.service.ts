@@ -34,8 +34,6 @@ export class SharedDataService {
   private sharedData = new BehaviorSubject<Object>(this.initial_data);
   currentData = this.sharedData.asObservable();
   updateData(searchText:object): any {
-    console.log('shared data...',this.sharedData)
-
     return this.sharedData.next(searchText);
   }
 
