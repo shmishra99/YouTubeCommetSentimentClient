@@ -1,0 +1,31 @@
+.main_box {
+    display: grid;
+    row-gap: 1px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 100vw;
+    height: 85vh;
+    margin: 20px 5px 2px 5px ;
+
+}
+
+.app-chart{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+
+.bottom-comment{
+    grid-column-start: 4;
+    grid-row-start: 3;
+    overflow: scroll;
+}
+
+.top-comment{
+    overflow: scroll;
+}
+
+.thumbnail{
+border: 1px solid black;
+}

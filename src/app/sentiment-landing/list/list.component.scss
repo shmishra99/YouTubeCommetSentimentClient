@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../../assets/fonts/Roboto-Regular.ttf') format('truetype'),
+         url('../../../assets/fonts/Roboto-Bold.ttf') format('truetype') bold;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.container {
+    padding-right: 15px;
+    margin-right: auto;
+    /* margin-left: auto; */
+    position: relative;
+    left: -14px;
+    top: 14px;
+}
+
+h1, li {
+    font-family: 'Roboto', sans-serif;
+}
+
+.top-comment{
+  
+    overflow-x: scroll;
+    width: 95%;
+    height: auto;
+    position: relative;
+
+}

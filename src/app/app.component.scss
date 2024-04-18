@@ -1,7 +1,61 @@
-.main_box {
-    display: flex;
+*{
+    padding: 0;
+    margin: 0;
 }
+#banner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.h1-cl {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    color: #080808;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+    color: #405065;
+  }
+  
+  .h1-cl  span {
+    display: block;
+    font-size: 0.5em;
+    line-height: 1.3;
+  }
+  .h1-cl  em {
+    font-style: normal;
+    font-weight: 600;
+  }
+  
 
-.main_box app-pie-chart {
-    margin: 20px;
-}
+  /* === Sentiment STYLE #1 Heading=== */
+  .heading-tube .h1-cl  {
+    text-align: center;
+    padding-bottom: 5px;
+  }
+  .heading-tube .h1-cl:before {
+    width: 28px;
+    height: 5px;
+    display: block;
+    content: "";
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    margin-left: -14px;
+    background-color: #b80000;
+  }
+  .heading-tube .h1-cl:after {
+    width: 100px;
+    height: 1px;
+    display: block;
+    content: "";
+    position: relative;
+    margin-top: 25px;
+    left: 50%;
+    margin-left: -50px;
+    background-color: #b80000;
+  }

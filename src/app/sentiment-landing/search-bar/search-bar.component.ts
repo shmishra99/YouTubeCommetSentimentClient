@@ -1,16 +1,20 @@
 declare var google:any;
 import { Component, OnInit } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
 import {CommonModule} from '@angular/common'
 import { HttpClient } from '@angular/common/http';
 import {CommentAnalysisService} from '../comment-analysis.service'
 import {SharedDataService} from '../shared-data.service'
+import { environment } from '../../../environments/environment';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [MatIconModule,FormsModule,CommonModule],
+  imports: [MatIconModule,FormsModule,CommonModule,MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss'
 })
@@ -23,9 +27,9 @@ export class SearchBarComponent implements OnInit{
     
   }
   ngOnInit():void{
-    const CLIENT_ID =
-    '788168760496-hhftuahtts34vljarc3la277fjioh4g4.apps.googleusercontent.com';
-  const SCOPES = 'https://www.googleapis.com/auth/userinfo.profile';
+  const CLIENT_ID = environment.CLIENT_ID
+  const SCOPES = environment.SCOPES
+
 
   try {
     this.tokenClient = google.accounts.oauth2.initTokenClient({
@@ -36,8 +40,6 @@ export class SearchBarComponent implements OnInit{
   } catch (e) {
     console.log('Client library is Loading in backend.');
   }
-
-
   }
   
   async onSubmit(){
