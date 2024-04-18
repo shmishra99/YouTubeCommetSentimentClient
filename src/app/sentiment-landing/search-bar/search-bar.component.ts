@@ -56,7 +56,6 @@ export class SearchBarComponent implements OnInit{
     this.commentAnalysisService.getData(this.searchText,access_token).subscribe(
       {
         next: (v) => {
-          console.log("Fetched value",typeof v)
           this.sharedDataService.updateData(v)
         },
         error: (e) => {

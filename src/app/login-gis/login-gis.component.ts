@@ -14,7 +14,6 @@ declare var google:any;
 export class LoginGisComponent {
   tokenClient:any
   ngOnInit():void{
-    console.log('Inside ngoninit')
     const CLIENT_ID = environment.CLIENT_ID
    const SCOPES = environment.SCOPES;
 
@@ -35,7 +34,6 @@ export class LoginGisComponent {
 
   }
   async gisAuthentication() {
-     console.log("click function")
      const d = new Date();
      const seconds = Math.round(d.getTime() / 1000);
      this.tokenClient.callback = async (resp:any) => {
@@ -56,7 +54,6 @@ export class LoginGisComponent {
      const is_valid = refresh_at && (seconds - refresh_at) < 3550;
      const valid_token = stored_token ? await validateToken(stored_token) : false
      //validate the token as well. 
-     console.log('validation..',stored_token ,is_valid, valid_token)
      if (is_valid && stored_token && valid_token) {
          this.router.navigateByUrl('/sentimentAnalysis')       
      }

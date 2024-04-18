@@ -32,21 +32,13 @@ export class ListComponent {
     this.listData = []; // Initialize with an empty array
     this.title = '';
     this.isTopComment = false
-
-    console.log('this.title', this.title)
-
   }
 
   ngOnInit() {
-    console.log("line 39...",this.listData)
     if (this.title == 'Top Comments') {
 
       this.isTopComment = true
     }
-
-    console.log('ngonint', this.title)
-
-
   }
 
 
