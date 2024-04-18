@@ -1,17 +1,20 @@
 declare var google:any;
 import { Component, OnInit } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
 import {CommonModule} from '@angular/common'
 import { HttpClient } from '@angular/common/http';
 import {CommentAnalysisService} from '../comment-analysis.service'
 import {SharedDataService} from '../shared-data.service'
 import { environment } from '../../../environments/environment';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [MatIconModule,FormsModule,CommonModule],
+  imports: [MatIconModule,FormsModule,CommonModule,MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss'
 })
