@@ -6,6 +6,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-list',
@@ -36,7 +38,7 @@ export class ListComponent {
   }
 
   ngOnInit() {
-
+    console.log("line 39...",this.listData)
     if (this.title == 'Top Comments') {
 
       this.isTopComment = true

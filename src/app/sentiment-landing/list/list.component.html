@@ -17,7 +17,7 @@
         </div>
         <div id="collapse1" class="panel-collapse collapse">
           <ul class="list-group">
-            <li class="list-group-item" *ngFor="let item of listData">{{item}}</li>
+            <li class="list-group-item" *ngFor="let item of listData"><div [innerHTML]="item"></div></li>
           </ul>
         </div>
       </div>
@@ -35,7 +35,7 @@
           </div>
           <div id="collapse2" class="panel-collapse collapse">
             <ul class="list-group">
-              <li class="list-group-item" *ngFor="let item of listData"> {{item}}</li>
+              <li class="list-group-item" *ngFor="let item of listData"><div [innerHTML]="item"></div></li>
             </ul>
           </div>
         </div>
