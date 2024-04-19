@@ -1,6 +1,18 @@
-h3 {
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../../assets/fonts/Roboto-Regular.ttf') format('truetype'),
+         url('../../../assets/fonts/Roboto-Bold.ttf') format('truetype') bold;
+    font-weight: normal;
+    font-style: normal;
+}
+
+p {
     font-family: 'Roboto', sans-serif;
-    font-size: small;
+    font-size: medium;
+    font-weight: bold;
+    width: 100%;
+    height: auto;
+    object-fit: fill;
 }
 
 img{
@@ -8,4 +20,3 @@ img{
     height: auto;
     object-fit: fill;
 }
-

@@ -27,3 +27,24 @@ h1, li {
     position: relative;
 
 }
+
+a[aria-expanded=true] .fa-chevron-right {
+    transition: .3s transform ease-in-out;
+    transform: rotate(90deg);
+
+   }
+
+
+.panel-h-positive{
+    background-color:rgba(52, 168, 83, 1)
+   
+}
+.panel-h-negative
+{
+    background-color:rgba(234, 67, 53, 1);
+}
+
+.panel-title a{
+    color: rgba(255, 255, 255, 1);
+    font-size: larger;
+}
