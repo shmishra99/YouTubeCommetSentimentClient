@@ -16,14 +16,12 @@
     grid-row-end: 4;
 }
 
-.bottom-comment{
-    grid-column-start: 4;
-    grid-row-start: 3;
-    overflow: scroll;
-}
-
 .top-comment{
     overflow: scroll;
+    grid-row-start: 2;
+    grid-column-start: 4;
+    grid-row-end: -1;
+    grid-column-end:-1
 }
 
 .thumbnail{
